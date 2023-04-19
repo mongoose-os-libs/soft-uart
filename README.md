@@ -1,6 +1,6 @@
-# Software UART Library
+# Software-UART Library
 ## Overview
-Software UART library for [Mongoose OS](https://mongoose-os.com/).
+Software-UART library for [Mongoose OS](https://mongoose-os.com/).
 > :bulb: This library is strongly optimized and it uses interrupts and hardware timers to do not block CPU while receiving data.
 
 Use this library to add new UART ports, in addition to the hardware ones, on the MCUs listed in the table below.
