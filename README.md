@@ -3,7 +3,7 @@
 Software-UART library for [Mongoose OS](https://mongoose-os.com/).
 > :bulb: This library is strongly optimized and it uses interrupts and hardware timers to do not block CPU while receiving data.
 
-Use this library to add new UART ports, in addition to the hardware ones, on the MCUs listed in the table below.
+Use this library to add new (software) UART ports, in addition to the hardware ones, on the MCUs listed in the table below.
 
 |MCU|SOFT-UART0 (Rx/Tx pins)|SOFT-UART1|Notes|
 |--|:--:|:--:|--|
@@ -42,13 +42,15 @@ UART configuration parameters.
 |parity|Parity. Default: `MGOS_UART_PARITY_NONE`.|
 |stop_bits|Number of stop bits. Default: `MGOS_UART_STOP_BITS_1`. Value `MGOS_UART_STOP_BITS_1_5` is not allowed.|
 |rx_buf_size|Size of the Rx buffer. Default: 256.|
-|tx_buf_size|Size of the Tx buffer. Dfault: 256.|
+|tx_buf_size|Size of the Tx buffer. Default: 256.|
 
 ### mgos_soft_uart_configure
 ```c
 bool mgos_soft_uart_configure(int uart_no, const struct mgos_soft_uart_config *cfg);
 ```
-Apply given UART [configuration](#mgos_soft_uart_config).
+Apply given [SOFT-UART configuration](#mgos_soft_uart_config).
+
+> :warning: Stop bit value `1.5` is not supported.
 
 |Parameter||
 |--|--|
@@ -85,7 +87,7 @@ Fill provided `cfg` [structure](#mgos_soft_uart_config) with the default values.
 ```c|UART number.|
 bool mgos_soft_uart_config_get(int uart_no, struct mgos_soft_uart_config *cfg);
 ```
-Fill provided cfg structure with the current UART config. Returns false if the specified UART has not bee configured yet.
+Fill provided [cfg structure](#mgos_soft_uart_config)  with the current SOFT-UART configuration. Returns `false` if the specified SOFT-UART has not bee configured yet.
 
 |Parameter||
 |--|--|
@@ -95,7 +97,7 @@ Fill provided cfg structure with the current UART config. Returns false if the s
 ```c
 void mgos_soft_uart_set_dispatcher(int uart_no, mgos_uart_dispatcher_t cb, void *arg);
 ```
-Set UART dispatcher: a callback which gets called when there is data in the input buffer or space available in the output buffer.
+Set SOFT-UART dispatcher: a callback which gets called when there is data in the input buffer or space available in the output buffer.
 
 |Parameter||
 |--|--|
@@ -106,7 +108,7 @@ Set UART dispatcher: a callback which gets called when there is data in the inpu
 ```c
 size_t mgos_soft_uart_read(int uart_no, void *buf, size_t len);
 ```
-Read data from UART input buffer. Note: unlike write, read will not block if there are not enough bytes in the input buffer.
+Read data from SOFT-UART input buffer. Note: unlike write, read will not block if there are not enough bytes in the input buffer.
 
 |Parameter||
 |--|--|
@@ -137,7 +139,7 @@ Returns the number of bytes available for reading.
 ```c
 bool mgos_soft_uart_set_rx_enabled(int uart_no, bool enabled);
 ```
-Controls whether UART receiver is enabled. Returns `false` if error.
+Controls whether SOFT-UART receiver is enabled. Returns `false` if error.
 
 |Parameter||
 |--|--|
@@ -147,7 +149,7 @@ Controls whether UART receiver is enabled. Returns `false` if error.
 ```c
 bool mgos_soft_uart_is_rx_enabled(int uart_no);
 ```
-Returns whether UART receiver is enabled.
+Returns whether SOFT-UART receiver is enabled.
 
 |Parameter||
 |--|--|
@@ -187,7 +189,7 @@ Write data to UART, printf style. Note: currently this requires that data is ful
 ```c
 void mgos_soft_uart_flush(int uart_no);
 ```
-Flush the UART output buffer. Waits for data to be sent.
+Flush the SOFT-UART output buffer. Waits for data to be sent.
 
 |Parameter||
 |--|--|
