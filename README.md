@@ -50,12 +50,12 @@ bool mgos_soft_uart_configure(int uart_no, const struct mgos_soft_uart_config *c
 ```
 Apply given [SOFT-UART configuration](#mgos_soft_uart_config).
 
-> :warning: Stop bit value `1.5` is not supported.
-
 |Parameter||
 |--|--|
-|uart_no|UART number.|
-|cfg|[Configuration structure](#mgos_soft_uart_config).|
+|uart_no|SOFT-UART number.|
+|cfg|[Config structure](#mgos_soft_uart_config).|
+
+> :warning: Stop bit value `1.5` is not supported.
 
 Example:
 ```c
@@ -81,18 +81,18 @@ Fill provided `cfg` [structure](#mgos_soft_uart_config) with the default values.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
-|cfg|[Configuration structure](#mgos_soft_uart_config).|
+|uart_no|SOFT-UART number.|
+|cfg|[Config structure](#mgos_soft_uart_config).|
 ### mgos_soft_uart_config_get
-```c|UART number.|
+```c|SOFT-UART number.|
 bool mgos_soft_uart_config_get(int uart_no, struct mgos_soft_uart_config *cfg);
 ```
 Fill provided [cfg structure](#mgos_soft_uart_config)  with the current SOFT-UART configuration. Returns `false` if the specified SOFT-UART has not bee configured yet.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
-|cfg|[Configuration structure](#mgos_soft_uart_config).|
+|uart_no|SOFT-UART number.|
+|cfg|[Config structure](#mgos_soft_uart_config).|
 ### mgos_soft_uart_set_dispatcher
 ```c
 void mgos_soft_uart_set_dispatcher(int uart_no, mgos_uart_dispatcher_t cb, void *arg);
@@ -101,7 +101,7 @@ Set SOFT-UART dispatcher: a callback which gets called when there is data in the
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 |cb|Dispatcher's [callback](https://mongoose-os.com/docs/mongoose-os/api/core/mgos_uart.h.md#mgos_uart_dispatcher_t).|
 |arg|Callback arguments or `NULL`.|
 ### mgos_soft_uart_read
@@ -112,7 +112,7 @@ Read data from SOFT-UART input buffer. Note: unlike write, read will not block i
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 |buf|Buffer.|
 |len|Len of the buffer.|
 ### mgos_soft_uart_read_mbuf
@@ -123,7 +123,7 @@ Like [mgos_soft_uart_read()](#mgos_soft_uart_read), but reads into an mbuf.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 |buf|`mbuf` pointer.|
 |len|Len of the buffer.|
 ### mgos_soft_uart_read_avail
@@ -134,7 +134,7 @@ Returns the number of bytes available for reading.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 ### mgos_soft_uart_set_rx_enabled
 ```c
 bool mgos_soft_uart_set_rx_enabled(int uart_no, bool enabled);
@@ -143,7 +143,7 @@ Controls whether SOFT-UART receiver is enabled. Returns `false` if error.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 |enabled|`true` to enable Rx.|
 ### mgos_soft_uart_is_rx_enabled
 ```c
@@ -153,7 +153,7 @@ Returns whether SOFT-UART receiver is enabled.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 ### mgos_soft_uart_write
 ```c
 size_t mgos_soft_uart_write(int uart_no, const void *buf, size_t len);
@@ -162,7 +162,7 @@ Write data to the UART. Note: if there is enough space in the output buffer, the
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 |buf|Buffer.|
 |len|Len of the buffer.|
 ### mgos_soft_uart_write_avail
@@ -173,7 +173,7 @@ Returns amount of space availabe in the output buffer.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 ### mgos_soft_uart_printf
 ```c
 int mgos_soft_uart_printf(int uart_no, const char *fmt, ...);
@@ -182,7 +182,7 @@ Write data to UART, printf style. Note: currently this requires that data is ful
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 |fmt|String format.|
 |...|String format args.|
 ### mgos_soft_uart_flush
@@ -193,7 +193,7 @@ Flush the SOFT-UART output buffer. Waits for data to be sent.
 
 |Parameter||
 |--|--|
-|uart_no|UART number.|
+|uart_no|SOFT-UART number.|
 ## To Do
 - Implement javascript APIs for [Mongoose OS MJS](https://github.com/mongoose-os-libs/mjs).
 - Test the library on ESP32 and other MCUs.
