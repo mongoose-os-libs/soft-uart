@@ -1,6 +1,6 @@
 author: DIY365
 type: lib
-description: Software UART Mongoose OS library
+description: SOFT-UART Mongoose OS library
 version: 1.0
 
 sources:
