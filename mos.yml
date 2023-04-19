@@ -1,0 +1,32 @@
+author: DIY365
+type: lib
+description: Software UART Mongoose OS library
+version: 1.0
+
+sources:
+  - src
+includes:
+  - include
+filesystem:
+  - fs
+config_schema:
+  - ["soft_uart", "o", {title: "SOFT-UART library settings"}]
+  - ["soft_uart.port", "o", {title: "SOFT-UART0 port settings"}]
+  - ["soft_uart.port.rx_gpio_pin", "i", -1, {title: "Default Rx pin"}]
+  - ["soft_uart.port.rx_gpio_pull_up", "b", true, {title: "True if Rx GPIO is pulled up"}]
+  - ["soft_uart.port.tx_gpio_pin", "i", -1, {title: "Default Tx pin"}]
+
+conds:
+  - when: mos.platform == "esp8266"
+    apply:
+      config_schema:
+        - ["soft_uart.port.rx_gpio_pin", 13]
+        - ["soft_uart.port.tx_gpio_pin", 15]
+
+libs:
+
+tags:
+  - c
+  - docs:driver:soft-uart
+
+manifest_version: 2017-09-29
