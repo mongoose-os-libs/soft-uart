@@ -13,7 +13,7 @@ Use this library to add new (software) UART ports, in addition to the hardware o
 The library adds the `soft_uart` section to the device configuration:
 ```javascript
 {
-  "port":                       // SOFT-SOFT-UART0 port settings
+  "port":                       // SOFT-UART0 port settings
   {
     "rx_gpio_pin": ,            // Default Rx pin
     "rx_gpio_pull_up": true,    // True if Rx GPIO is pulled up
@@ -48,7 +48,7 @@ UART configuration parameters.
 ```c
 bool mgos_soft_uart_configure(int uart_no, const struct mgos_soft_uart_config *cfg);
 ```
-Apply given [SOFT-UART configuration](#mgos_soft_uart_config).
+Apply given [SOFT-UART configuration](#mgos_soft_uart_config). Returns `true` if success, otherwise `false`.
 
 |Parameter||
 |--|--|
