@@ -40,7 +40,7 @@ UART configuration parameters.
 |baud_rate|Baud rate. Default: 9600.|
 |num_data_bits|Number of data bits, 5-8. Default: 8.|
 |parity|Parity. Default: `MGOS_UART_PARITY_NONE`.|
-|stop_bits|Number of stop bits. Default: `MGOS_UART_STOP_BITS_1`. Value `MGOS_UART_STOP_BITS_1_5` is not allowed.|
+|stop_bits|Number of stop bits. Default: `MGOS_UART_STOP_BITS_1`. Value `MGOS_UART_STOP_BITS_1_5` is not supported.|
 |rx_buf_size|Size of the Rx buffer. Default: 256.|
 |tx_buf_size|Size of the Tx buffer. Default: 256.|
 
